@@ -21,4 +21,18 @@ const printHelp = () => {
   );
 };
 
-export { printError, printSuccess, printHelp }
+const printWeather = (res) => {
+  console.log(
+    dedent(`
+      ${chalk.bgYellow(' WEATHER ')}
+      🏙️ City: ${res.name}, ${res.sys.country}
+      ${res.weather[0].main}, ${res.weather[0].description}
+      🌡️ Temperature: ${res.main.temp}°C
+      🧪 Pressure: ${res.main.pressure}hPa
+      💧 Humidity: ${res.main.humidity}%
+      🌫️ Wind: ${res.wind.speed}
+    `)
+  );
+};
+
+export { printError, printSuccess, printHelp, printWeather }

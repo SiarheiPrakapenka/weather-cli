@@ -2,8 +2,9 @@ import https from 'https';
 import { getKeyValue, TOKEN_DICTIONARY } from './storage.service.js';
 import axios from 'axios';
 
-const getWeather = async (city) => {
-  const token = await getKeyValue(TOKEN_DICTIONARY.token);
+const getWeather = async () => {
+  const token = process.env.TOKEN ?? await getKeyValue(TOKEN_DICTIONARY.token);
+  const city = process.env.CITY ?? await getKeyValue(TOKEN_DICTIONARY.city);
 
   if (!token) {
     throw new Error('No API token, please, set within -t [API_KEY]');
@@ -17,7 +18,6 @@ const getWeather = async (city) => {
       units: 'metric'
     }
   })
-
   return data;
 };
 
